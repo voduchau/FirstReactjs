@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import SearchBar from './components/SearchBar';
+import ListImage from './components/ListImage';
+import axios from './api/axios';
+class App extends Component {
+    state = { listImage: [] }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    setTerm2 = async (term) => {
+       const res = await axios.get('/search/photos',{
+            params: {
+             query: term
+            }
+        })
+        console.log(res,'resss')
+        this.setState({ listImage: res.data.results })
+    }
+    render() {
+        return (
+            <>
+            <SearchBar setTerm2={this.setTerm2} />
+            <ListImage listImage={this.state.listImage} />
+            </>
+        )
+    }
 }
-
 export default App;
