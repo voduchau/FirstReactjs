@@ -14,6 +14,15 @@ class App extends Component {
         console.log(res,'resss')
         this.setState({ listImage: res.data.results })
     }
+    componentDidMount () {
+        console.log('componentDidMount')
+    }
+    componentWillMount () {
+        console.log('componentWillMount')
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount')        
+      }
     render() {
         return (
             <>

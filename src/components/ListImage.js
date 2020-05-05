@@ -3,9 +3,12 @@ import React from 'react';
 class ListImage extends React.Component {
     renderList = () => {
         return this.props.listImage.map((item)=>{
-            console.log(item,'item')
+
             return (
-                <img src={item.urls.regular} />
+                <div key={item.id}>
+                    <img src={item.urls.regular} />
+                </div>
+                
             )
         })
     }
